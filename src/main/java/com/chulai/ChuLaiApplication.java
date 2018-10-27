@@ -1,5 +1,6 @@
-package com.zhiyun.eternal;
+package com.chulai;
 
+import com.chulai.interceptor.AuthorizationInterceptor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.boot.web.embedded.tomcat.TomcatConnectorCustomizer;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -37,7 +39,8 @@ import java.io.IOException;
 @SpringBootApplication
 @EnableJpaAuditing
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class EternalApplication {
+@ServletComponentScan
+public class ChuLaiApplication {
 
     /**
      * Main method, This is just a standard method that follows
@@ -46,7 +49,7 @@ public class EternalApplication {
      * @param args args
      */
     public static void main(String[] args) {
-        SpringApplication.run(EternalApplication.class,args);
+        SpringApplication.run(ChuLaiApplication.class,args);
     }
 
     /**
@@ -100,7 +103,7 @@ public class EternalApplication {
         @Override
         public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
             config.setRepositoryDetectionStrategy(RepositoryDetectionStrategy.RepositoryDetectionStrategies.ANNOTATED)
-                    .exposeIdsFor(EternalApplication.class).getCorsRegistry().addMapping("/api/**");
+                    .exposeIdsFor(ChuLaiApplication.class).getCorsRegistry().addMapping("/api/**");
         }
 
         @Override
@@ -130,7 +133,7 @@ public class EternalApplication {
          */
         @Override
         public void addInterceptors(InterceptorRegistry registry) {
-            /*registry.addInterceptor(new Interceptor()).addPathPatterns("/**").excludePathPatterns("/a", "/b", "/c");*/
+            registry.addInterceptor(new AuthorizationInterceptor()).addPathPatterns("/**").excludePathPatterns("/api/users/login");
         }
 
         /**

@@ -1,4 +1,4 @@
-package com.zhiyun.eternal.domain;
+package com.chulai.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
