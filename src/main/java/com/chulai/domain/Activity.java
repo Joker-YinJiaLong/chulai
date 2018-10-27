@@ -7,6 +7,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "activity")
@@ -27,6 +28,9 @@ public class Activity {
             initialValue = 0,
             allocationSize = 1)
     private Long id;
+
+    //活动类别
+    private Long activityType;
 
     //开始时间
     private Date startTime;
@@ -58,7 +62,7 @@ public class Activity {
     //活动介绍
     private String introduction;
 
-    //发布方式
+    //发布方式 1：公开；2：办公开；3：AA；4：面报名
     private Integer publishType;
 
     //主办方
@@ -70,4 +74,17 @@ public class Activity {
     //联系电话
     private String contactTelephone;
 
+    //活动图片
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "activity_image", joinColumns = {
+            @JoinColumn(name = "activity_id", referencedColumnName = "id")}, inverseJoinColumns = {
+            @JoinColumn(name = "image")})
+    private List<String> imageList;
+
+    //标签
+    private String labels;
+
+    //报名设置
+    @OneToMany(mappedBy = "activity", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RegisterField> registerFields;
 }
