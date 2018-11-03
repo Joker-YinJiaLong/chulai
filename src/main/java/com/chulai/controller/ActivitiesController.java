@@ -88,16 +88,17 @@ public class ActivitiesController {
 
     @ApiOperation(value = "search activity by keyword", notes = "search activity by keyword")
     @ApiImplicitParams({
+            @ApiImplicitParam(name = "activityType", value = "activityType", required = false, dataType = "Long"),
             @ApiImplicitParam(name = "keyword", value = "keyword", required = false, dataType = "String"),
             @ApiImplicitParam(name = "page", value = "page", required = true, dataType = "Int"),
             @ApiImplicitParam(name = "size", value = "size", required = true, dataType = "Int")
     })
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<BaseResult> findActivity(@RequestParam(value = "keyword") String keyword,@RequestParam(value = "page") Integer page,@RequestParam(value = "size") Integer size) {
+    public ResponseEntity<BaseResult> findActivity(@RequestParam(value = "activityType") Long activityTypeId,@RequestParam(value = "keyword") String keyword,@RequestParam(value = "page") Integer page,@RequestParam(value = "size") Integer size) {
         Sort sort=Sort.by(Sort.Direction.DESC,"startTime");
         Pageable pageable=PageRequest.of(page,size,sort);
-        Page<Activity> activityPage=activityService.searchActivetyByKeyword(keyword,pageable);
+        Page<Activity> activityPage=activityService.searchActivetyByKeyword(activityTypeId,keyword,pageable);
         return ResponseEntity.ok(BaseResult.success(activityPage));
     }
 }

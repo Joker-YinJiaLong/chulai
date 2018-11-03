@@ -18,6 +18,6 @@ public interface ActivityRepository extends JpaSpecificationExecutor<Activity>, 
 
    Page<Activity> findByCreatorIdAndTemplateTrue(Long userId,Pageable pageable);
 
-   @Query(value = "select o from Activity o where title like '%?1%' and startTime>='?2'")
-   Page<Activity> findByTitleAndStartTime(String title, Date startTime, Pageable pageable);
+   @Query(value = "select o from Activity o where activityType='?1' and title like '%?2%' and startTime>='?3'")
+   Page<Activity> findByTitleAndStartTime(Long activityTypeId,String title, Date startTime, Pageable pageable);
 }

@@ -19,7 +19,7 @@ public interface ActivityService {
      *通过关键字搜索活动信息
      * @return
      */
-    Page<Activity> searchActivetyByKeyword(String keyword,Pageable pageable);
+    Page<Activity> searchActivetyByKeyword(Long activityTypeId,String keyword,Pageable pageable);
 
     /**
      * 查询用户的模板列表

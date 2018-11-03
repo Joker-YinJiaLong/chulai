@@ -19,11 +19,11 @@ public class User {
     private Long version;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "ActivityGenerator")
-    @TableGenerator(name = "ActivityGenerator", table = "pk_generator",
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "UserGenerator")
+    @TableGenerator(name = "UserGenerator", table = "pk_generator",
             pkColumnName = "gen_name",
             valueColumnName = "gen_value",
-            pkColumnValue = "activity_pk",
+            pkColumnValue = "user_pk",
             initialValue = 0,
             allocationSize = 1)
     private Long id;
@@ -63,4 +63,7 @@ public class User {
 
     //是否推送
     private Boolean push;
+
+    //头像
+    private String headerPhoto;
 }

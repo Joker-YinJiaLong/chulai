@@ -25,10 +25,10 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
-    public Page<Activity> searchActivetyByKeyword(String keyword,Pageable pageable) {
+    public Page<Activity> searchActivetyByKeyword(Long activityTypeId,String keyword,Pageable pageable) {
         Date startTime=new Date();
         //TODO
-        return activityRepository.findByTitleAndStartTime(keyword,startTime,pageable);
+        return activityRepository.findByTitleAndStartTime(activityTypeId,keyword,startTime,pageable);
     }
 
     @Override
