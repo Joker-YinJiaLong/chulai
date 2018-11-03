@@ -13,17 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpSession;
 
 @Api(value = "currencies")
-@Controller
+@RestController
 @RequestMapping("/api/users")
 public class UsersController {
 
@@ -34,8 +30,8 @@ public class UsersController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "jsCode", value = "jsCode", required = true, dataType = "String")
     })
-    @ResponseBody
-    @RequestMapping(value = { "/login" }, method = RequestMethod.POST)
+
+    @PostMapping(value = { "/login" })
     public ResponseEntity<BaseResult> login(@RequestParam(value = "jsCode") String jsCode, HttpSession session) {
         String sessionHost=weChatConfig.getSessionHost();
         String secret=weChatConfig.getSecret();

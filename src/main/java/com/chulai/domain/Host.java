@@ -23,6 +23,7 @@ public class Host {
     @JsonIgnore //当转换成json返回给前端的时候忽略这个字段
     private Long version;
 
+    @Id
     @GeneratedValue(strategy = GenerationType.TABLE,generator = "HostGenerator")
     @TableGenerator(name = "HostGenerator", table = "pk_generator",
             pkColumnName = "gen_name",
@@ -30,11 +31,14 @@ public class Host {
             pkColumnValue = "host_pk",
             initialValue = 0,
             allocationSize = 1)
+    private Long id;
     //用户ID
     private Long userId;
     //联系人
+    @Column(length = 25,nullable = false)
     private String contact;
     //联系电话
+    @Column(length = 25,nullable = false)
     private String telephone;
 
 
