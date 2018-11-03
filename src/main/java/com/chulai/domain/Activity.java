@@ -77,12 +77,12 @@ public class Activity {
     //联系电话
     private String contactTelephone;
 
-    //活动图片
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "activity_image", joinColumns = {
-            @JoinColumn(name = "activity_id", referencedColumnName = "id")}, inverseJoinColumns = {
-            @JoinColumn(name = "image")})
-    private List<String> imageList;
+//    //活动图片
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "activity_image", joinColumns = {
+//            @JoinColumn(name = "activity_id", referencedColumnName = "id")}, inverseJoinColumns = {
+//            @JoinColumn(name = "image")})
+//    private List<String> imageList;
 
     //标签
     private String labels;
@@ -91,8 +91,10 @@ public class Activity {
     @OneToMany(mappedBy = "activity", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RegisterField> registerFields;
 
-    //创建者
-    private User creator;
+//    //创建者
+//    private User creator;
+
+    private Long creatorId;
 
     //是否为模板
     private Boolean template;

@@ -52,8 +52,8 @@ public class User {
     //是否结婚
     private Integer marriage;
 
-    //爱好
-    private List<Dictionary> hobbies;
+//    //爱好
+//    private List<Dictionary> hobbies;
 
     //邮箱
     private String email;

@@ -8,7 +8,6 @@ import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
 @ToString
 @EqualsAndHashCode
 public class BaseResult implements Serializable {

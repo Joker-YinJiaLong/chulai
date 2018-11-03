@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "wechat")
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
 @ToString
 @EqualsAndHashCode
 public class WeChatConfig {
