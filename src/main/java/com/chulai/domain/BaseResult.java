@@ -1,6 +1,7 @@
 package com.chulai.domain;
 
 import com.chulai.enums.ResultEnum;
+import com.sun.istack.internal.NotNull;
 import lombok.*;
 
 import java.io.Serializable;
@@ -11,6 +12,7 @@ import java.io.Serializable;
 @ToString
 @EqualsAndHashCode
 public class BaseResult implements Serializable {
+    @NotNull
     private Integer code;
     private String msg;
     private Object data;

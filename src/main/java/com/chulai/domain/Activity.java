@@ -29,6 +29,9 @@ public class Activity {
             allocationSize = 1)
     private Long id;
 
+    //标题
+    private String title;
+
     //活动类别
     private Long activityType;
 
@@ -87,4 +90,13 @@ public class Activity {
     //报名设置
     @OneToMany(mappedBy = "activity", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RegisterField> registerFields;
+
+    //创建者
+    private User creator;
+
+    //是否为模板
+    private Boolean template;
+
+    //创建时间
+    private Date createTime;
 }

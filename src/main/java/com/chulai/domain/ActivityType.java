@@ -36,4 +36,7 @@ public class ActivityType {
      * 图片
      */
     private String  logo;
+
+    //顺序
+    private Integer order;
 }

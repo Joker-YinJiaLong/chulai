@@ -36,4 +36,12 @@ public class Dictionary {
     private String code;
     //标题
     private String title;
+    //值
+    private Integer value;
+
+    //创建者
+    private Long creator;
+
+    //是否固定，固定的表示初始化的，不可修改，不固定的表示自定义的，可以修改的
+    private Boolean fixed;
 }
