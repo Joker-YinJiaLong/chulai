@@ -3,8 +3,10 @@ package com.chulai.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.chulai.config.WeChatConfig;
 import com.chulai.domain.BaseResult;
+import com.chulai.domain.User;
 import com.chulai.enums.ResultEnum;
 import com.chulai.enums.WeChatSession;
+import com.chulai.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -26,11 +28,13 @@ public class UsersController {
     @Autowired
     private WeChatConfig weChatConfig;
 
+    @Autowired
+    private UserService userService;
+
     @ApiOperation(value = "login", notes = "login")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "jsCode", value = "jsCode", required = true, dataType = "String")
     })
-
     @PostMapping(value = { "/login" })
     public ResponseEntity<BaseResult> login(@RequestParam(value = "jsCode") String jsCode, HttpSession session) {
         String sessionHost=weChatConfig.getSessionHost();
@@ -65,5 +69,19 @@ public class UsersController {
             }
         }
         return ResponseEntity.ok(BaseResult.failure(ResultEnum.INTERFACE_OUTER_INVOKE_ERROR));
+    }
+
+    /**
+     * 编辑用户信息
+     * @return
+     */
+    @ApiOperation(value = "editUser", notes = "editUser")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "user", value = "user", required = true, dataType = "com.chulai.domain.User")
+    })
+    @PutMapping(value = "/editUser")
+    public String editUser(User user){
+        String result=userService.editUser(user);
+        return result;
     }
 }
